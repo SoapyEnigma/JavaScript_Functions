@@ -66,22 +66,22 @@ function printPoint(x, y)
     if (x == 0 && y == 0)
         result = "Point is at the origin.";
 
-    if (x == 0 && y != 0)
+    else if (x == 0 && y != 0)
         result = "Point is on the y axis";
 
-    if (x != 0 && y == 0)
+    else if (x != 0 && y == 0)
         result = "Point is on the x axis";
 
-    if (x > 0 && y > 0)
+    else if (x > 0 && y > 0)
         result = "Point is in quadrant 1";
 
-    if (x < 0 && y < 0)
+    else if (x < 0 && y < 0)
         result = "Point is in quadrant 3";
 
-    if (x < 0 && y > 0)
+    else if (x < 0 && y > 0)
         result = "Point is in quadrant 2";
 
-    if (x > 0 && y < 0)
+    else if (x > 0 && y < 0)
         result = "Point is in quadrant 4";
 
     console.log(`(${x}, ${y}) ` + result);
@@ -127,12 +127,12 @@ console.log("EXERCISE 5:\n==========\n");
 function printPlanData(planLimit, day, usage)
 {
     let daysLeft = 30 - day;
-    let averageDailyUsage = usage / day;
-    let estimateDailyUse = planLimit / 30;
-    let estimatedOverage = averageDailyUsage * daysLeft + usage - planLimit;
-    let goalDailyUsage = (planLimit - usage) / daysLeft;
+    let averageDailyUsage = (usage / day).toFixed(2);
+    let estimateDailyUse = (planLimit / 30).toFixed(2);
+    let estimatedOverage = (averageDailyUsage * daysLeft + usage - planLimit).toFixed(2);
+    let goalDailyUsage = ((planLimit - usage) / daysLeft).toFixed(2);
 
-    let line1 = `${day} days used, ${daysLeft} days remaining\nAverage daily use: ${ averageDailyUsage } GB/day\n`;
+    let line1 = `${day} days used, ${daysLeft} days remaining\nAverage daily use: ${averageDailyUsage} GB/day\n`;
     let line2 = "";
     let line3 = `To stay below your data plan, use no more than ${goalDailyUsage} GB/day.`;
 
