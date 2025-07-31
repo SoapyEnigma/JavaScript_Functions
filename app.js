@@ -4,15 +4,10 @@ console.log("Hello World!\n==========\n");
 console.log("EXERCISE 1:\n==========\n");
 function printOdds(count)
 {
-    if (count >= 0)
-        for (let i = 0; i <= count; i++)
-            if (i % 2 === 1 | i % 2 === -1)
-                console.log(`Is odd: ${i}.`);
-
-    else if (count < 0)
-        for (let i = 0; i >= count; i--)
-            if (i % 2 === 1 | i % 2 === -1)
-                console.log(`Is odd: ${i}.`);
+    const step = count >= 0 ? 1 : -1;
+    for (let i = 0; step > 0 ? i <= count : i >= count; i += step)
+        if (i % 2 !== 0)
+            console.log(`Is odd: ${i}.`);
 }
 
 const count = Math.floor(Math.random() * 101) - 50;
