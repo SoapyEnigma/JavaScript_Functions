@@ -53,7 +53,6 @@ function printPoint(x, y)
 {
     let result = `(${x}, ${y})`;
 
-
     switch (true)
     {
         case (x === 0 && y === 0): result += " Point is at the origin.";
