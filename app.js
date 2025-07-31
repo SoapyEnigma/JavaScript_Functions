@@ -6,7 +6,12 @@ function printOdds(count)
 {
     if (count >= 0)
         for (let i = 0; i <= count; i++)
-            if (i % 2 === 1 | 1 % 2 === -1)
+            if (i % 2 === 1 | i % 2 === -1)
+                console.log(`Is odd: ${i}.`);
+
+    else if (count < 0)
+        for (let i = 0; i >= count; i--)
+            if (i % 2 === 1 | i % 2 === -1)
                 console.log(`Is odd: ${i}.`);
 }
 
@@ -47,29 +52,34 @@ console.log("EXERCISE 3:\n==========\n");
 function printPoint(x, y)
 {
     let result = `(${x}, ${y})`;
-    if (x === 0 && y === 0)
-        result += " Point is at the origin.";
 
-    else if (x === 0 && y != 0)
-        result += " Point is on the y axis";
 
-    else if (x != 0 && y === 0)
-        result += " Point is on the x axis";
+    switch (true)
+    {
+        case (x === 0 && y === 0): result += " Point is at the origin.";
+            break;
 
-    else if (x > 0 && y > 0)
-        result += " Point is in quadrant 1";
+        case (x === 0): result += " Point is on the y axis.";
+            break;
 
-    else if (x < 0 && y > 0)
-        result += " Point is in quadrant 2";
+        case (y === 0): result += " Point is on the x axis.";
+            break;
 
-    else if (x < 0 && y < 0)
-        result += " Point is in quadrant 3";
+        case (x > 0 && y > 0): result += " Point is in quadrant 1.";
+            break;
 
-    else if (x > 0 && y < 0)
-        result += " Point is in quadrant 4";
+        case (x < 0 && y > 0): result += " Point is in quadrant 2.";
+            break;
 
-    else
-        result = "Unable to plot point."
+        case (x < 0 && y < 0): result += " Point is in quadrant 3.";
+            break;
+
+        case (x > 0 && y < 0): result += " Point is in quadrant 4.";
+            break;
+
+        default: result += " Unable to plot point."
+            break;
+    }
 
     console.log(result);
 }
