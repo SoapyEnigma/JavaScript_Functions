@@ -63,26 +63,29 @@ console.log("EXERCISE 3:\n==========\n");
 function printPoint(x, y)
 {
     let result = "";
-    if (x == 0 && y == 0)
+    if (x === 0 && y === 0)
         result = "Point is at the origin.";
 
-    else if (x == 0 && y != 0)
+    else if (x === 0 && y != 0)
         result = "Point is on the y axis";
 
-    else if (x != 0 && y == 0)
+    else if (x != 0 && y === 0)
         result = "Point is on the x axis";
 
     else if (x > 0 && y > 0)
         result = "Point is in quadrant 1";
 
-    else if (x < 0 && y < 0)
-        result = "Point is in quadrant 3";
-
     else if (x < 0 && y > 0)
         result = "Point is in quadrant 2";
 
+    else if (x < 0 && y < 0)
+        result = "Point is in quadrant 3";
+
     else if (x > 0 && y < 0)
         result = "Point is in quadrant 4";
+
+    else
+        result = "Unable to plot point."
 
     console.log(`(${x}, ${y}) ` + result);
 }
@@ -100,26 +103,27 @@ console.log("EXERCISE 4:\n==========\n");
 
 function getTriangleType(a, b, c)
 {
+    let status = "The triangle is"
     if (a <= 0 || b <= 0 || c <= 0)
-        return "not a valid triangle.";
+        return `${status} not a valid triangle.`;
 
     if (a + b <= c || a + c <= b || b + c <= a)
-        return "not a valid triangle.";
+        return `${status} not a valid triangle.`;
 
-    if (a == b && b == c)
-        return "equilateral.";
+    if (a === b && b === c)
+        return `${status} equilateral.`;
     else if (a === b || b === c || a === c)
-        return "isosceles.";
+        return `${status} isosceles.`;
     else
-        return "scalene.";
+        return `${status} scalene.`;
 }
 
-console.log("The triangle is " + getTriangleType(1, 1, 1));
-console.log("The triangle is " + getTriangleType(1, 2, 2));
-console.log("The triangle is " + getTriangleType(2, 4, 3));
-console.log("The triangle is " + getTriangleType(1, 2, 3));
-console.log("The triangle is " + getTriangleType(0, 0, 0));
-console.log("The triangle is " + getTriangleType(0, 1, 0));
+console.log(getTriangleType(1, 1, 1));
+console.log(getTriangleType(1, 2, 2));
+console.log(getTriangleType(2, 4, 3));
+console.log(getTriangleType(1, 2, 3));
+console.log(getTriangleType(0, 0, 0));
+console.log(getTriangleType(0, 1, 0));
 
 // Exercise 5 Section
 console.log("EXERCISE 5:\n==========\n");
