@@ -5,25 +5,9 @@ console.log("EXERCISE 1:\n==========\n");
 function printOdds(count)
 {
     if (count >= 0)
-    {
         for (let i = 0; i <= count; i++)
-        {
-            if (i % 2 != 0)
-            {
-                console.log("Is odd: " + i);
-            }
-        }
-    }
-    else
-    {
-        for (let i = 0; i >= count; i--)
-        {
-            if (i % 2 != 0)
-            {
-                console.log("Is odd: " + i);
-            }
-        }
-    }
+            if (i % 2 === 1 | 1 % 2 === -1)
+                console.log(`Is odd: ${i}.`);
 }
 
 const count = Math.floor(Math.random() * 101) - 50;
@@ -41,7 +25,7 @@ function checkAge(userName, age)
     }
 
     var user = "Buddy";
-    if (userName != null && userName != undefined && userName != "")
+    if (userName?.trim())
         user = userName;
 
     var aboveSixteen = `Congrats ${user}, you can drive!`;
@@ -62,32 +46,32 @@ console.log("EXERCISE 3:\n==========\n");
 
 function printPoint(x, y)
 {
-    let result = "";
+    let result = `(${x}, ${y})`;
     if (x === 0 && y === 0)
-        result = "Point is at the origin.";
+        result += " Point is at the origin.";
 
     else if (x === 0 && y != 0)
-        result = "Point is on the y axis";
+        result += " Point is on the y axis";
 
     else if (x != 0 && y === 0)
-        result = "Point is on the x axis";
+        result += " Point is on the x axis";
 
     else if (x > 0 && y > 0)
-        result = "Point is in quadrant 1";
+        result += " Point is in quadrant 1";
 
     else if (x < 0 && y > 0)
-        result = "Point is in quadrant 2";
+        result += " Point is in quadrant 2";
 
     else if (x < 0 && y < 0)
-        result = "Point is in quadrant 3";
+        result += " Point is in quadrant 3";
 
     else if (x > 0 && y < 0)
-        result = "Point is in quadrant 4";
+        result += " Point is in quadrant 4";
 
     else
         result = "Unable to plot point."
 
-    console.log(`(${x}, ${y}) ` + result);
+    console.log(result);
 }
 
 printPoint(1, 0);
@@ -112,8 +96,10 @@ function getTriangleType(a, b, c)
 
     if (a === b && b === c)
         return `${status} equilateral.`;
+
     else if (a === b || b === c || a === c)
         return `${status} isosceles.`;
+
     else
         return `${status} scalene.`;
 }
