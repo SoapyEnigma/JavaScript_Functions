@@ -118,37 +118,58 @@ console.log(getTriangleType(0, 1, 0));
 // Exercise 5 Section
 console.log("EXERCISE 5:\n==========\n");
 
-function printPlanData(planLimit, day, usage)
+function printPlanData(planLimit, daysUsed = 1, dataUsage = 0)
 {
-    let daysLeft = 30 - day;
-    let averageDailyUsage = (usage / day).toFixed(2);
-    let estimateDailyUse = (planLimit / 30).toFixed(2);
-    let estimatedOverage = (averageDailyUsage * daysLeft + usage - planLimit).toFixed(2);
-    let goalDailyUsage = ((planLimit - usage) / daysLeft).toFixed(2);
+    if (planLimit === 0)
+    {
+        console.log("Failed to get Plan Data information. Missing Limit.");
+        return;
+    }
 
-    let line1 = `${day} days used, ${daysLeft} days remaining\nAverage daily use: ${averageDailyUsage} GB/day\n`;
-    let line2 = "";
-    let line3 = `To stay below your data plan, use no more than ${goalDailyUsage} GB/day.`;
+    if (daysUsed >= 30)
+    {
+        console.log("Failed to get Plan Data information. Parameter 'daysUsed' is greater than 30.");
+        return;
+    }
+
+    //
+    // More error catching here ie catching negatives
+    //
+
+    const TOTAL_DAYS = 30;
+    const daysLeft = TOTAL_DAYS - daysUsed;
+
+    const averageDailyUsage = (dataUsage / daysUsed);
+    const estimateDailyUse = (planLimit / TOTAL_DAYS);
+    const estimatedOverage = (averageDailyUsage * TOTAL_DAYS - planLimit);
+    const goalDailyUsage = ((planLimit - dataUsage) / daysLeft);
+
+    let summary = `${daysUsed} days used, ${daysLeft} days remaining\n`;
+    summary += `Average daily use: ${averageDailyUsage.toFixed(2)} GB/day\n`;
 
     if (averageDailyUsage > estimateDailyUse)
     {
-        line2 = `You are exceeding your average daily use (${estimateDailyUse} GB/day),\n`
-            + `Continuing this high usage, you'll exceed your data plan by ${estimatedOverage} GB.\n`;
+        summary += `You are exceeding your average daily use (${estimateDailyUse.toFixed(2)} GB/day),\n`;
+        summary += `Continuing this high usage, you'll exceed your data plan by ${estimatedOverage.toFixed(2)} GB.\n`;
     }
     else if (averageDailyUsage < estimateDailyUse)
     {
-        line2 = `You are below your average daily use (${estimateDailyUse} GB/day),\n`
-            + `Continuing this low usage, you will not exceed your data plan.\n`;
+        summary += `You are below your average daily use (${estimateDailyUse.toFixed(2)} GB/day),\n`;
+        summary += `Continuing this low usage, you will not exceed your data plan.\n`;
     }
     else
     {
-        line2 = `You are on par with your average daily use (${estimateDailyUse} GB/day),\n`
-            + `Continuing this rate of usage, you will not exceed your data plan.\n`
+        summary += `You are on par with your average daily use (${estimateDailyUse.toFixed(2)} GB/day),\n`;
+        summary += `Continuing this rate of usage, you will not exceed your data plan.\n`;
     }
 
-    console.log(line1 + line2 + line3);
+    summary += `To stay below your data plan, use no more than ${goalDailyUsage.toFixed(2)} GB/day.`;
+
+    console.log(summary);
 }
 
 printPlanData(100, 29, 0);
 printPlanData(10, 5, 6);
 printPlanData(30, 10, 10);
+printPlanData(0);
+printPlanData(1, 31);
